@@ -1,0 +1,435 @@
+/* ====================================================
+   TASKFLOW — STYLESHEET
+   Mobile-first. Breakpoints at 768px and 1024px.
+   ==================================================== */
+
+/* ---------- 1. RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- 2. COLOR VARIABLES (exact spec) ---------- */
+:root {
+  --primary: #A5856F;   /* Mocha Mousse */
+  --secondary: #A0D4E0; /* Ethereal Blue */
+  --background: #F2F0EA;/* Moonlit Grey */
+  --text: #2E2E2E;
+  --card: #FFFFFF;
+
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+/* ====================================================
+   3. NAVBAR (Flexbox)
+   ==================================================== */
+.navbar {
+  background-color: var(--card);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Hamburger button (mobile only) */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  background: none;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Nav links — hidden by default on mobile, shown via toggle */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0 0;
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.nav-links a {
+  font-weight: 600;
+  padding: 0.5rem 0;
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* ====================================================
+   4. HERO SECTION
+   ==================================================== */
+.hero {
+  text-align: center;
+  padding: 3.5rem 5% 2.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+}
+
+.hero p {
+  margin-top: 0.6rem;
+  font-size: 1.1rem;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+/* ====================================================
+   5. ADD TASK FORM (Flexbox)
+   ==================================================== */
+.add-task-section {
+  padding: 0 5% 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--card);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.task-form input {
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--background);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--background);
+  color: var(--text);
+  transition: border-color var(--transition);
+}
+
+.task-form input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+.btn-add {
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.btn-add:hover {
+  background-color: #8d6e58;
+  transform: translateY(-2px);
+}
+
+/* ====================================================
+   6. BOARD — TASK COLUMNS (CSS Grid for layout)
+   ==================================================== */
+.board {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile: single column */
+  gap: 1.5rem;
+  padding: 0 5% 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.column {
+  background-color: var(--background);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+}
+
+.column-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 0.5rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-height: 40px;
+}
+
+/* ---------- Task Card ---------- */
+.task-card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+  animation: cardIn 0.25s ease;
+}
+
+.task-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-card .task-text {
+  flex: 1;
+  word-break: break-word;
+  font-size: 0.95rem;
+}
+
+.task-card.done-card .task-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Card action buttons (Flexbox) */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.btn-done {
+  background-color: var(--secondary);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  transition: background-color var(--transition);
+  white-space: nowrap;
+}
+
+.btn-done:hover {
+  background-color: #8cc4d2;
+}
+
+/* 3-dot menu */
+.menu-btn {
+  background: none;
+  font-size: 1.2rem;
+  color: var(--text);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color var(--transition);
+}
+
+.menu-btn:hover {
+  background-color: var(--background);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--card);
+  box-shadow: var(--shadow-hover);
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 110px;
+  z-index: 10;
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  background: none;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: background-color var(--transition);
+}
+
+.dropdown button:hover {
+  background-color: var(--background);
+}
+
+/* Hours list item */
+.hours-card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.hours-card .hours-value {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Empty state text */
+.empty-msg {
+  font-size: 0.85rem;
+  color: #999;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* ====================================================
+   7. FOOTER
+   ==================================================== */
+.footer {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 2rem 5%;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.footer-inner a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 0.8rem;
+}
+
+/* ====================================================
+   8. TABLET BREAKPOINT — 768px
+   ==================================================== */
+@media (min-width: 768px) {
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .task-form {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .task-form input[type="text"] {
+    flex: 2;
+  }
+
+  .task-form input[type="number"] {
+    flex: 1;
+  }
+
+  .board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-inner {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+/* ====================================================
+   9. DESKTOP BREAKPOINT — 1024px
+   ==================================================== */
+@media (min-width: 1024px) {
+
+  .board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero {
+    padding: 4.5rem 5% 3rem;
+  }
+}

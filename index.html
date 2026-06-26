@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER / NAVBAR ============ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <span class="logo">TaskFlow</span>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#tasks">My Tasks</a>
+        <a href="#done">Done</a>
+        <a href="#hours">Hours</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero">
+    <h1>TASKFLOW</h1>
+    <p>Organize your day efficiently</p>
+  </section>
+
+  <!-- ============ ADD TASK FORM ============ -->
+  <section class="add-task-section">
+    <form id="taskForm" class="task-form">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="What do you need to do?"
+        aria-label="New task"
+        required
+      >
+      <input
+        type="number"
+        id="hoursInput"
+        placeholder="Hours"
+        aria-label="Estimated hours"
+        min="0"
+        step="0.5"
+      >
+      <button type="submit" class="btn-add">Add Task</button>
+    </form>
+  </section>
+
+  <!-- ============ MAIN: TASK BOARD ============ -->
+  <main class="board">
+
+    <!-- COLUMN 1: MY TASKS -->
+    <section class="column" id="tasks">
+      <h2 class="column-title">My Tasks</h2>
+      <ul class="task-list" id="myTasksList">
+        <!-- Tasks added by JS will appear here -->
+      </ul>
+    </section>
+
+    <!-- COLUMN 2: DONE -->
+    <section class="column" id="done">
+      <h2 class="column-title">Done</h2>
+      <ul class="task-list" id="doneList">
+        <!-- Completed tasks will appear here -->
+      </ul>
+    </section>
+
+    <!-- COLUMN 3: HOURS -->
+    <section class="column" id="hours">
+      <h2 class="column-title">Hours</h2>
+      <ul class="task-list" id="hoursList">
+        <!-- Hours per task will appear here -->
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Student ID: <strong>DL-2026-0142</strong></p>
+      <p>Year: <strong>2026</strong></p>
+      <p>Contact: <a href="mailto:student.dummy@example.com">student.dummy@example.com</a></p>
+    </div>
+    <p class="footer-bottom">&copy; 2026 TaskFlow.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
